@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+
     implementation("org.hibernate:hibernate-core:6.0.2.Final")
     implementation("org.glassfish.jaxb:jaxb-runtime:3.0.2")
 // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
