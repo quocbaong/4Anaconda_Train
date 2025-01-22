@@ -10,15 +10,13 @@ import java.util.Random;
 
 public class Tau_Data {
     public static void main(String[] args) {
-        EntityManager em = null;
-        EntityTransaction transaction = null;
+        EntityManager em = Persistence.createEntityManagerFactory("SourceMSSQL").createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
         Faker faker = new Faker();
         Random random = new Random();
 
         try {
-            em = Persistence.createEntityManagerFactory("SourceMSSQL").createEntityManager();
-            transaction = em.getTransaction();
-            transaction.begin(); // Mở giao dịch trước khi thêm dữ liệu
+            transaction.begin();
 
             // Tạo 10 bản ghi giả cho thực thể Tàu
             for (int i = 0; i < 10; i++) {
@@ -31,17 +29,15 @@ public class Tau_Data {
                 em.persist(tau); // Lưu thực thể vào database
             }
 
-            transaction.commit(); // Cam kết giao dịch sau khi thêm tất cả dữ liệu
+            transaction.commit();
             System.out.println("Dữ liệu giả cho thực thể Tàu đã được tạo thành công!");
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback(); // Rollback nếu có lỗi xảy ra
+            if (transaction.isActive()) {
+                transaction.rollback();
             }
             e.printStackTrace();
         } finally {
-            if (em != null) {
-                em.close(); // Đóng EntityManager để giải phóng tài nguyên
-            }
+            em.close();
         }
     }
 }
