@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class NhanVien_Test {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("YourPersistenceUnitName");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SourceMSSQL");
         NhanVienDao nhanVienDao = new NhanVienDao(emf);
         Scanner scanner = new Scanner(System.in);
         int choice;
