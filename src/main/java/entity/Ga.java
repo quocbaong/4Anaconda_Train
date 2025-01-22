@@ -13,10 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @Entity
+@Setter
 public class Ga implements Serializable {
 
     @Id

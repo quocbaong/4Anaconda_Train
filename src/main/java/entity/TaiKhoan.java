@@ -6,16 +6,15 @@ package entity;
 
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
 @Entity
+@AllArgsConstructor
+@Setter
 @NamedQueries({
 	@NamedQuery(name = "TaiKhoan.findAll",query = "select tk from TaiKhoan tk")
 })
@@ -49,8 +48,8 @@ public class TaiKhoan implements Serializable {
 
 	public TaiKhoan() {
     }
-    
-    
+
+
 
     public String getTenTaiKhoan() {
         return tenTaiKhoan;
@@ -102,4 +101,5 @@ public class TaiKhoan implements Serializable {
         final TaiKhoan other = (TaiKhoan) obj;
         return Objects.equals(this.tenTaiKhoan, other.tenTaiKhoan);
     }
+
 }

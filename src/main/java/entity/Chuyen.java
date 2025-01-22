@@ -14,14 +14,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
+import jakarta.persistence.OneToOne;
 import lombok.Setter;
 
 import java.io.Serializable;
 
 @Entity
 @Setter
-@Getter
 public class Chuyen implements Serializable {
 
     @Id
@@ -42,11 +41,11 @@ public class Chuyen implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "MaTau", nullable = false)
-    private String tau;
+    private Tau tau;
 
     @ManyToOne
     @JoinColumn(name = "MaTuyen")
-    private String tuyen;
+    private Tuyen tuyen;
 
     @OneToMany(mappedBy = "chuyen")
     private Set<Ve> lisVes;
@@ -55,7 +54,9 @@ public class Chuyen implements Serializable {
     }
 
 
-    public Chuyen(String maChuyen, String tenCHuyen, LocalTime gioKhoiHanh, boolean chieu, LocalDate ngayKhoiHanh, String tau, String tuyen) {
+
+
+    public Chuyen(String maChuyen, String tenCHuyen, LocalTime gioKhoiHanh, boolean chieu, LocalDate ngayKhoiHanh) {
         super();
         this.maChuyen = maChuyen;
         this.tenCHuyen = tenCHuyen;
@@ -124,19 +125,19 @@ public class Chuyen implements Serializable {
         this.ngayKhoiHanh = ngayKhoiHanh;
     }
 
-    public String getTau() {
+    public Tau getTau() {
         return tau;
     }
 
-    public void setTau(String tau) {
+    public void setTau(Tau tau) {
         this.tau = tau;
     }
 
-    public String getTuyen() {
+    public Tuyen getTuyen() {
         return tuyen;
     }
 
-    public void setTuyen(String tuyen) {
+    public void setTuyen(Tuyen tuyen) {
         this.tuyen = tuyen;
     }
 
@@ -147,7 +148,6 @@ public class Chuyen implements Serializable {
         return "Chuyen [maChuyen=" + maChuyen + ", tenCHuyen=" + tenCHuyen + ", gioKhoiHanh=" + gioKhoiHanh + ", chieu="
                 + chieu + ", ngayKhoiHanh=" + ngayKhoiHanh + "]";
     }
-
 
 
 }
