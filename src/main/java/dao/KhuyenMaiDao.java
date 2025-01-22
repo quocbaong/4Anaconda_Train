@@ -33,7 +33,7 @@ public class KhuyenMaiDao {
         }
         return false;
     }
-
+    // thêm khuyến mãi
     public boolean addKhuyenMai(KhuyenMai khuyenMai) {
         EntityTransaction tx = em.getTransaction();
         try {
@@ -95,7 +95,7 @@ public class KhuyenMaiDao {
                 .getResultList();
     }
 
-    //    lấy khuyến mãi theo loại trong 1 khoảng thười gian
+    //    lấy khuyến mãi theo loại trong 1 khoảng thời gian
     public List<KhuyenMai> layDSKhuyenMaiTheoKhoangThoiGian(Date startTime, Date endTime,String loai) {
         return em.createQuery("SELECT km FROM KhuyenMai km WHERE km.thoiGianBatDau >= :startTime AND km.thoiGianKetThuc <= :endTime AND km.loaiKhuyenMai = :loai", KhuyenMai.class)
                 .setParameter("startTime", startTime)
@@ -104,27 +104,6 @@ public class KhuyenMaiDao {
                 .getResultList();
     }
 
-    public KhuyenMai layKhuyenMaiTotNhatBangLoai(int soLuong) {
-        try {
-            return em.createQuery(
-                    "SELECT km FROM KhuyenMai km WHERE AND km.soLuongVe <= :soLuong km.loaiKhuyenMai = :loai AND km.trangThai = :trangThai AND km.thoiGianKetThuc > :date ORDER BY km.soLuongVe DESC",
-                    KhuyenMai.class).setParameter("soLuong", soLuong).setParameter("loai", "KMKH").setParameter("trangThai", true).setParameter("date", Date.from(Instant.now())).setMaxResults(1).getSingleResult();
-        } catch (Exception e) {
-            // TODO: handle exception
-            return null;
-        }
-    }
-
-    public KhuyenMai layKhuyenMaiTotNhatBangLoai(String loai) {
-        try {
-            return em.createQuery(
-                    "SELECT km FROM KhuyenMai km WHERE km.loaiKhuyenMai = :loai AND km.trangThai = :trangThai AND km.thoiGianKetThuc > :date ORDER BY km.chietKhau DESC",
-                    KhuyenMai.class).setParameter("loai", loai).setParameter("trangThai", true).setParameter("date", Date.from(Instant.now())).setMaxResults(1).getSingleResult();
-        } catch (Exception e) {
-            // TODO: handle exception
-            return null;
-        }
-    }
     public static List<KhuyenMai> layKhuyenMaiTheoTrangThai(EntityManagerFactory emf, String trangThai) {
         EntityManager em = emf.createEntityManager();
         List<KhuyenMai> danhSachKhuyenMai = new ArrayList();

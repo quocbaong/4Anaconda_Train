@@ -1,7 +1,6 @@
 
 package entity;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+
 import java.io.Serializable;
 
 @Entity
@@ -54,7 +53,7 @@ public class KhuyenMai implements Serializable {
     @OneToMany(mappedBy = "khuyenMai")
     private List<Ve> listVes;
 
-    public KhuyenMai() {
+    public KhuyenMai(String maKM, String tenKM, double chietKhau, Date startTime, Date endTime, String moTa, int soLuongVe, boolean trangThai) {
     }
 
 

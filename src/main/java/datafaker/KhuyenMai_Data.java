@@ -7,8 +7,6 @@ import jakarta.persistence.Persistence;
 import net.datafaker.Faker;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Random;
 
@@ -25,7 +23,7 @@ public class KhuyenMai_Data {
 
         try {
             for (int i = 1; i <= 10; i++) {
-                KhuyenMai khuyenMai = new KhuyenMai();
+                KhuyenMai khuyenMai = new KhuyenMai(maKM, tenKM, chietKhau, startTime, endTime, moTa, soLuongVe, trangThai);
                 String maKhuyenMai = "KM" + i;
                 String tenKhuyenMai = faker.commerce().promotionCode();
                 String loaiKhuyenMai = random.nextBoolean() ? "Giảm giá" : "Quà tặng";
