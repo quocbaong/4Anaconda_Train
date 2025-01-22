@@ -13,7 +13,7 @@ import java.util.Random;
 public class TaiKhoan_Data {
     public static void main(String[] args) {
         // Tạo đối tượng EntityManager và Transaction
-        EntityManager em = Persistence.createEntityManagerFactory("theroyal")
+        EntityManager em = Persistence.createEntityManagerFactory("SourceMSSQL")
                 .createEntityManager();
         EntityTransaction tr = em.getTransaction();
 
