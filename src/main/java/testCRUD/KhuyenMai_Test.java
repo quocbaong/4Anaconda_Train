@@ -1,4 +1,4 @@
-package TestCURD;
+package testCRUD;
 
 import dao.KhuyenMaiDao;
 import entity.KhuyenMai;
