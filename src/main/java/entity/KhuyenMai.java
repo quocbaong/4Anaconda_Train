@@ -1,6 +1,6 @@
-
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,16 +11,13 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 
-import java.io.Serializable;
-
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "KhuyenMai.findAllKMKH",query = "select km from KhuyenMai km where km.loaiKhuyenMai != :loai"),
-        @NamedQuery(name = "KhuyenMai.findAllKMHD",query = "select km from KhuyenMai km where km.loaiKhuyenMai = :loai"),
-        @NamedQuery(name = "KhuyenMai.findAll",query = "select km from KhuyenMai km"),
-        @NamedQuery(name = "KhuyenMai.findAllKMNB",query = "select km from KhuyenMai km where km.maKhuyenMai like :ma"),
+        @NamedQuery(name = "KhuyenMai.findAllKMKH", query = "SELECT km FROM KhuyenMai km WHERE km.loaiKhuyenMai != :loai"),
+        @NamedQuery(name = "KhuyenMai.findAllKMHD", query = "SELECT km FROM KhuyenMai km WHERE km.loaiKhuyenMai = :loai"),
+        @NamedQuery(name = "KhuyenMai.findAll", query = "SELECT km FROM KhuyenMai km"),
+        @NamedQuery(name = "KhuyenMai.findAllKMNB", query = "SELECT km FROM KhuyenMai km WHERE km.maKhuyenMai LIKE :ma"),
         @NamedQuery(name = "KhuyenMai.findAllTimeRange", query = "SELECT km FROM KhuyenMai km WHERE km.thoiGianBatDau >= :startTime AND km.thoiGianKetThuc <= :endTime")
-
 })
 public class KhuyenMai implements Serializable {
 
@@ -34,10 +31,10 @@ public class KhuyenMai implements Serializable {
     @Column(name = "LoaiKhuyenMai", nullable = false, columnDefinition = "nvarchar(255)")
     private String loaiKhuyenMai;
 
-    @Column(name = "ThoiGianBatDau", nullable = false,columnDefinition = "datetime")
+    @Column(name = "ThoiGianBatDau", nullable = false, columnDefinition = "datetime")
     private Date thoiGianBatDau;
 
-    @Column(name = "ThoiGianKetThuc", nullable = false,columnDefinition = "datetime")
+    @Column(name = "ThoiGianKetThuc", nullable = false, columnDefinition = "datetime")
     private Date thoiGianKetThuc;
 
     @Column(name = "SoLuongVe")
@@ -49,19 +46,14 @@ public class KhuyenMai implements Serializable {
     @Column(name = "ChietKhau")
     private double chietKhau;
 
-
     @OneToMany(mappedBy = "khuyenMai")
     private List<Ve> listVes;
 
-    public KhuyenMai(String maKM, String tenKM, double chietKhau, Date startTime, Date endTime, String moTa, int soLuongVe, boolean trangThai) {
+    public KhuyenMai() {
     }
-
-
-
 
     public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, String loaiKhuyenMai, Date thoiGianBatDau,
                      Date thoiGianKetThuc, int soLuongVe, boolean trangThai, double chietKhau) {
-        super();
         this.maKhuyenMai = maKhuyenMai;
         this.tenKhuyenMai = tenKhuyenMai;
         this.loaiKhuyenMai = loaiKhuyenMai;
@@ -72,12 +64,8 @@ public class KhuyenMai implements Serializable {
         this.chietKhau = chietKhau;
     }
 
-
-
-
     public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, String loaiKhuyenMai, Date thoiGianBatDau,
                      Date thoiGianKetThuc, boolean trangThai) {
-        super();
         this.maKhuyenMai = maKhuyenMai;
         this.tenKhuyenMai = tenKhuyenMai;
         this.loaiKhuyenMai = loaiKhuyenMai;
@@ -86,32 +74,7 @@ public class KhuyenMai implements Serializable {
         this.trangThai = trangThai;
     }
 
-
-    public int getSoLuongVe() {
-        return soLuongVe;
-    }
-
-    public void setSoLuongVe(int soLuongVe) {
-        this.soLuongVe = soLuongVe;
-    }
-
-
-
-
-
-    public List<Ve> getListVes() {
-        return listVes;
-    }
-
-
-
-
-    public void setListVes(List<Ve> listVes) {
-        this.listVes = listVes;
-    }
-
-
-
+    // === Getter & Setter ===
 
     public String getMaKhuyenMai() {
         return maKhuyenMai;
@@ -137,37 +100,37 @@ public class KhuyenMai implements Serializable {
         this.loaiKhuyenMai = loaiKhuyenMai;
     }
 
-
-
     public Date getThoiGianBatDau() {
         return thoiGianBatDau;
     }
-
 
     public void setThoiGianBatDau(Date thoiGianBatDau) {
         this.thoiGianBatDau = thoiGianBatDau;
     }
 
-
     public Date getThoiGianKetThuc() {
         return thoiGianKetThuc;
     }
-
 
     public void setThoiGianKetThuc(Date thoiGianKetThuc) {
         this.thoiGianKetThuc = thoiGianKetThuc;
     }
 
+    public int getSoLuongVe() {
+        return soLuongVe;
+    }
+
+    public void setSoLuongVe(int soLuongVe) {
+        this.soLuongVe = soLuongVe;
+    }
 
     public boolean isTrangThai() {
         return trangThai;
     }
 
-
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
 
     public double getChietKhau() {
         return chietKhau;
@@ -177,8 +140,25 @@ public class KhuyenMai implements Serializable {
         this.chietKhau = chietKhau;
     }
 
+    public List<Ve> getListVes() {
+        return listVes;
+    }
+
+    public void setListVes(List<Ve> listVes) {
+        this.listVes = listVes;
+    }
+
     @Override
     public String toString() {
-        return "KhuyenMai{" + "maKhuyenMai=" + maKhuyenMai + ", tenKhuyenMai=" + tenKhuyenMai + ", loaiKhuyenMai=" + loaiKhuyenMai + ", thoiGianBatDau=" + thoiGianBatDau + ", thoiGianKetThuc=" + thoiGianKetThuc + ", chietKhau=" + chietKhau + '}';
+        return "KhuyenMai{" +
+                "maKhuyenMai='" + maKhuyenMai + '\'' +
+                ", tenKhuyenMai='" + tenKhuyenMai + '\'' +
+                ", loaiKhuyenMai='" + loaiKhuyenMai + '\'' +
+                ", thoiGianBatDau=" + thoiGianBatDau +
+                ", thoiGianKetThuc=" + thoiGianKetThuc +
+                ", chietKhau=" + chietKhau +
+                ", soLuongVe=" + soLuongVe +
+                ", trangThai=" + trangThai +
+                '}';
     }
 }

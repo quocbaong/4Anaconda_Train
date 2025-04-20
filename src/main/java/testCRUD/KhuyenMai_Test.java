@@ -37,6 +37,8 @@ public class KhuyenMai_Test {
                     String maKM = sc.nextLine();
                     System.out.print("Nhập tên KM: ");
                     String tenKM = sc.nextLine();
+                    System.out.print("Nhập loại khuyến mãi: ");
+                    String loaiKhuyenMai = sc.nextLine();
                     System.out.print("Nhập chiết khấu: ");
                     double chietKhau = sc.nextDouble();
                     sc.nextLine(); // Bỏ qua dòng thừa
@@ -54,15 +56,14 @@ public class KhuyenMai_Test {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    System.out.print("Nhập mô tả: ");
-                    String moTa = sc.nextLine();
                     System.out.print("Nhập số lượng vé: ");
                     int soLuongVe = sc.nextInt();
-                    sc.nextLine(); // Bỏ qua dòng thừa
+                    sc.nextLine();
                     System.out.print("Nhập trạng thái (true/false): ");
                     boolean trangThai = sc.nextBoolean();
 
-                    KhuyenMai newKM = new KhuyenMai(maKM, tenKM, chietKhau, startTime, endTime, moTa, soLuongVe, trangThai);
+                    KhuyenMai newKM = new KhuyenMai(maKM, tenKM, loaiKhuyenMai, startTime, endTime, soLuongVe, trangThai, chietKhau);
+
                     if (khuyenMaiDao.addKhuyenMai(newKM)) {
                         System.out.println("Thêm Khuyến mãi thành công!");
                     } else {
