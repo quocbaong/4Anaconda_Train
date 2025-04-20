@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Random;
-
+import java.util.concurrent.TimeUnit;
 public class NhanVien_Data {
     public static void main(String[] args) {
         // Tạo đối tượng EntityManager và Transaction
@@ -37,7 +37,7 @@ public class NhanVien_Data {
                 boolean trangThai = random.nextBoolean();
 
                 Date ngaySinhDate = faker.date().birthday(20, 50);
-                Date ngayVaoLamDate = faker.date().past(2000, ngaySinhDate);
+                Date ngayVaoLamDate = faker.date().past(2000, TimeUnit.DAYS, ngaySinhDate);
 
                 LocalDate ngaySinh = Instant.ofEpochMilli(ngaySinhDate.getTime())
                         .atZone(ZoneId.systemDefault()).toLocalDate();

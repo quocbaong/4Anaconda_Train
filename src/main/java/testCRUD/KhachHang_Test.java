@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class KhachHang_Test {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("YourPersistenceUnitName");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SourceMSSQL");
         KhachHangDao khachHangDao = new KhachHangDao(emf);
         Scanner scanner = new Scanner(System.in);
         int choice;

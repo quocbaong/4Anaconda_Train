@@ -23,7 +23,6 @@ public class KhuyenMai_Data {
 
         try {
             for (int i = 1; i <= 10; i++) {
-                KhuyenMai khuyenMai = new KhuyenMai(maKM, tenKM, chietKhau, startTime, endTime, moTa, soLuongVe, trangThai);
                 String maKhuyenMai = "KM" + i;
                 String tenKhuyenMai = faker.commerce().promotionCode();
                 String loaiKhuyenMai = random.nextBoolean() ? "Giảm giá" : "Quà tặng";
@@ -38,14 +37,17 @@ public class KhuyenMai_Data {
                 boolean trangThai = random.nextBoolean();
                 double chietKhau = random.nextDouble() * 50;
 
-                khuyenMai.setMaKhuyenMai(maKhuyenMai);
-                khuyenMai.setTenKhuyenMai(tenKhuyenMai);
-                khuyenMai.setLoaiKhuyenMai(loaiKhuyenMai);
-                khuyenMai.setThoiGianBatDau(startDate);
-                khuyenMai.setThoiGianKetThuc(endDate);
-                khuyenMai.setSoLuongVe(soLuongVe);
-                khuyenMai.setTrangThai(trangThai);
-                khuyenMai.setChietKhau(chietKhau);
+                // Khởi tạo đúng constructor
+                KhuyenMai khuyenMai = new KhuyenMai(
+                        maKhuyenMai,
+                        tenKhuyenMai,
+                        loaiKhuyenMai,
+                        startDate,
+                        endDate,
+                        soLuongVe,
+                        trangThai,
+                        chietKhau
+                );
 
                 tr.begin();
                 em.persist(khuyenMai);
