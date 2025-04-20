@@ -33,7 +33,7 @@ dependencies {
     // https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api
     implementation ("jakarta.annotation:jakarta.annotation-api:2.1.1")
 
-// https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
     compileOnly ("jakarta.servlet:jakarta.servlet-api:6.0.0")
     annotationProcessor ("jakarta.servlet:jakarta.servlet-api:6.0.0")
 
