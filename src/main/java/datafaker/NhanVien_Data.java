@@ -6,20 +6,18 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import net.datafaker.Faker;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class NhanVien_Data {
     public static void main(String[] args) {
-        // Tạo đối tượng EntityManager và Transaction
         EntityManager em = Persistence.createEntityManagerFactory("SourceMSSQL")
                 .createEntityManager();
         EntityTransaction tr = em.getTransaction();
 
-        // Tạo các đối tượng hỗ trợ dữ liệu giả
         Faker faker = new Faker();
         Random random = new Random();
 
@@ -36,13 +34,14 @@ public class NhanVien_Data {
                 String loaiNV = random.nextBoolean() ? "Quản lý" : "Nhân viên";
                 boolean trangThai = random.nextBoolean();
 
-                Date ngaySinhDate = faker.date().birthday(20, 50);
-                Date ngayVaoLamDate = faker.date().past(2000, ngaySinhDate);
-
-                LocalDate ngaySinh = Instant.ofEpochMilli(ngaySinhDate.getTime())
-                        .atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalDate ngayVaoLam = Instant.ofEpochMilli(ngayVaoLamDate.getTime())
-                        .atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate ngaySinh = getRandomDateBetween(
+                        LocalDate.now().minusYears(50),
+                        LocalDate.now().minusYears(20)
+                );
+                LocalDate ngayVaoLam = getRandomDateBetween(
+                        ngaySinh.plusYears(18),
+                        LocalDate.now()
+                );
 
                 nhanVien.setMaNhanVien(maNhanVien);
                 nhanVien.setHoTen(hoTen);
@@ -70,5 +69,18 @@ public class NhanVien_Data {
         } finally {
             em.close();
         }
+    }
+
+    // Chuyển đổi từ Date sang LocalDate
+    public static LocalDate convertToLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    // Random ngày trong khoảng từ startDate đến endDate
+    public static LocalDate getRandomDateBetween(LocalDate startDate, LocalDate endDate) {
+        long start = startDate.toEpochDay();
+        long end = endDate.toEpochDay();
+        long randomDay = ThreadLocalRandom.current().nextLong(start, end + 1);
+        return LocalDate.ofEpochDay(randomDay);
     }
 }

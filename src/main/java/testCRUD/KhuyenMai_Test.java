@@ -39,8 +39,6 @@ public class KhuyenMai_Test {
                     String tenKM = sc.nextLine();
                     System.out.print("Nhập loại khuyến mãi: ");
                     String loaiKhuyenMai = sc.nextLine();
-                    System.out.print("Nhập chiết khấu: ");
-                    double chietKhau = sc.nextDouble();
                     sc.nextLine(); // Bỏ qua dòng thừa
                     System.out.print("Nhập thời gian bắt đầu (yyyy-MM-dd): ");
                     Date startTime = null;
@@ -61,6 +59,8 @@ public class KhuyenMai_Test {
                     sc.nextLine();
                     System.out.print("Nhập trạng thái (true/false): ");
                     boolean trangThai = sc.nextBoolean();
+                    System.out.print("Nhập chiết khấu: ");
+                    double chietKhau = sc.nextDouble();
 
                     KhuyenMai newKM = new KhuyenMai(maKM, tenKM, loaiKhuyenMai, startTime, endTime, soLuongVe, trangThai, chietKhau);
 
