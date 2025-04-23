@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
+@Table(name = "Ve", schema = "dbo")
 @NamedQueries({
         @NamedQuery(name = "Ve.FindByMaHd", query = "select v from Ve v where v.hoaDon.maHoaDon = :mhd and v.trangThai = true "),
         @NamedQuery(name = "Ve.FindByMaVe", query = "select v from Ve v where v.maVe = :mv and v.trangThai = true "),
@@ -19,6 +20,7 @@ import java.util.Set;
         @NamedQuery(name = "Ve.findAll", query = "SELECT v FROM Ve v WHERE v.trangThai = true"),
         @NamedQuery(name = "Ve.TongVeHuyTrongThang", query = "SELECT COUNT(v) FROM Ve v WHERE YEAR(v.thoiGianLenTau) = :nam AND MONTH(v.thoiGianLenTau) = :thang AND DAY(v.thoiGianLenTau) = :ngay AND v.trangThai = false")
 })
+
 public class Ve implements Serializable {
 
     @Id

@@ -23,6 +23,9 @@ dependencies {
     implementation("org.glassfish.jaxb:jaxb-runtime:3.0.2")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.5.1")
     implementation("com.microsoft.sqlserver:mssql-jdbc:12.3.0.jre17-preview")
+    implementation ("org.liquibase:liquibase-core:4.25.1")
+    // Rõ ràng khai báo JPA 3.0
+    implementation("jakarta.persistence:jakarta.persistence-api:3.0.0")
 
     // JSON và Jakarta APIs
     implementation("jakarta.json:jakarta.json-api:2.1.3")
@@ -47,11 +50,13 @@ dependencies {
     implementation("org.jfree:jfreechart:1.5.3")
     implementation("com.toedter:jcalendar:1.4")
 
-    // Thư viện timingframework từ Maven Central
+    // Thư viện timingframework và AbsoluteLayout từ Maven Central
     implementation("net.java.dev.timingframework:timingframework:1.0")
-
-    // Thư viện AbsoluteLayout từ Maven Central
     implementation("org.netbeans.external:AbsoluteLayout:RELEASE240")
+
+    // Log4j2
+    implementation("org.apache.logging.log4j:log4j-api:2.23.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.23.1")
 }
 
 tasks.test {

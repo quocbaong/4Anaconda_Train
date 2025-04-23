@@ -13,3 +13,4 @@ select * from Tau
 select * from Toa
 select * from Tuyen
 select * from VE
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Ve'
