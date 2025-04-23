@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class TestTaiKhoan {
     public static void main(String[] args) {
         // Create EntityManagerFactory and TaiKhoanDao instance
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("theroyal");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SourceMSSQL");
         TaiKhoanDao taiKhoanDao = new TaiKhoanDao(emf);
 
         Scanner scanner = new Scanner(System.in);

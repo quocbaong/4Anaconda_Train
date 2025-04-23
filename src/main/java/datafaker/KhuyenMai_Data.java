@@ -6,16 +6,18 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import net.datafaker.Faker;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.Instant;
 import java.util.Date;
 import java.util.Random;
 
 public class KhuyenMai_Data {
     public static void main(String[] args) {
-        EntityManager em = Persistence.createEntityManagerFactory("SourceMSSQL").createEntityManager();
+        // Tạo đối tượng EntityManager và Transaction
+        EntityManager em = Persistence.createEntityManagerFactory("SourceMSSQL")
+                .createEntityManager();
         EntityTransaction tr = em.getTransaction();
 
+        // Tạo các đối tượng hỗ trợ dữ liệu giả
         Faker faker = new Faker();
         Random random = new Random();
 
@@ -25,16 +27,17 @@ public class KhuyenMai_Data {
                 String tenKhuyenMai = faker.commerce().promotionCode();
                 String loaiKhuyenMai = random.nextBoolean() ? "Giảm giá" : "Quà tặng";
 
-                LocalDate startLocalDate = LocalDate.of(2020, 1, 1).plusDays(random.nextInt(1460)); // tối đa 4 năm
-                Date startDate = Date.from(startLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-                LocalDate endLocalDate = startLocalDate.plusDays(random.nextInt(30) + 1);
-                Date endDate = Date.from(endLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date startDate = faker.date().between(
+                        Date.from(Instant.parse("2020-01-01T00:00:00Z")),
+                        Date.from(Instant.parse("2023-12-31T23:59:59Z"))
+                );
+                Date endDate = faker.date().future(30, java.util.concurrent.TimeUnit.DAYS, startDate);
 
                 int soLuongVe = random.nextInt(50) + 1;
                 boolean trangThai = random.nextBoolean();
-                double chietKhau = Math.round(random.nextDouble() * 50 * 10.0) / 10.0;
+                double chietKhau = random.nextDouble() * 50;
 
+                // Khởi tạo đúng constructor
                 KhuyenMai khuyenMai = new KhuyenMai(
                         maKhuyenMai,
                         tenKhuyenMai,

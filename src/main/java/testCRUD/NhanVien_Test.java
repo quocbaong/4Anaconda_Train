@@ -6,6 +6,7 @@ import entity.NhanVien;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,16 +34,29 @@ public class NhanVien_Test {
                     String maNhanVien = scanner.nextLine();
                     System.out.print("Nhập họ và tên: ");
                     String hoTen = scanner.nextLine();
+                    System.out.print("Nhập CCCD: ");
+                    String cccd = scanner.nextLine();
                     System.out.print("Nhập số điện thoại: ");
                     String sdt = scanner.nextLine();
                     System.out.print("Nhập email: ");
                     String email = scanner.nextLine();
-                    System.out.print("Nhập ngày sinh (YYYY-MM-DD): ");
-                    String ngaySinh = scanner.nextLine();
+                    System.out.print("Nhập giới tính (nam/nữ): ");
+                    String gioiTinhStr = scanner.nextLine();
+                    boolean gioiTinh = gioiTinhStr.equalsIgnoreCase("nam");
+
                     System.out.print("Nhập địa chỉ: ");
                     String diaChi = scanner.nextLine();
+                    System.out.print("Nhập loại nhân viên (Toàn thời gian/Bán thời gian): ");
+                    String loaiNV = scanner.nextLine();
+                    System.out.print("Nhập trạng thái (true/false): ");
+                    boolean trangThai = Boolean.parseBoolean(scanner.nextLine());
 
-                    NhanVien nhanVienMoi = new NhanVien(maNhanVien, hoTen, sdt, email, ngaySinh, diaChi);
+                    System.out.print("Nhập ngày sinh (YYYY-MM-DD): ");
+                    LocalDate ngaySinh = LocalDate.parse(scanner.nextLine());
+                    System.out.print("Nhập ngày vào làm (YYYY-MM-DD): ");
+                    LocalDate ngayVaoLam = LocalDate.parse(scanner.nextLine());
+
+                    NhanVien nhanVienMoi = new NhanVien(maNhanVien, hoTen, cccd, sdt, email, gioiTinh, diaChi, loaiNV, trangThai, ngaySinh, ngayVaoLam);
                     if (nhanVienDao.addNhanVien(nhanVienMoi)) {
                         System.out.println("Thêm nhân viên thành công!");
                     } else {
@@ -62,7 +76,7 @@ public class NhanVien_Test {
                         System.out.print("Nhập email mới: ");
                         nhanVienCapNhat.setEmail(scanner.nextLine());
                         System.out.print("Nhập ngày sinh mới (YYYY-MM-DD): ");
-                        nhanVienCapNhat.setNgaySinh(scanner.nextLine());
+                        nhanVienCapNhat.setNgaySinh(LocalDate.parse(scanner.nextLine()));
                         System.out.print("Nhập địa chỉ mới: ");
                         nhanVienCapNhat.setDiaChi(scanner.nextLine());
 
