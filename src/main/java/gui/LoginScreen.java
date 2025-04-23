@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.net.URL;
 
 public class LoginScreen extends javax.swing.JFrame {
 
@@ -70,7 +71,8 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
  
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 120, -1));
-
+        URL location = getClass().getResource("/icon/login.jpg");
+        System.out.println("Image URL: " + location);
         ImageIcon originalIcon = new ImageIcon(getClass().getResource("/icon/login.jpg"));  // Load original image
         Image scaledImage = originalIcon.getImage().getScaledInstance(500, 440, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);

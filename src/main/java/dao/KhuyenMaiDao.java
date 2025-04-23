@@ -139,7 +139,27 @@ public class KhuyenMaiDao {
         }
         return danhSachKhuyenMai;
     }
+    public KhuyenMai layKhuyenMaiTotNhatBangLoai(int soLuong) {
+        try {
+            return em.createQuery(
+                    "SELECT km FROM KhuyenMai km WHERE AND km.soLuongVe <= :soLuong km.loaiKhuyenMai = :loai AND km.trangThai = :trangThai AND km.thoiGianKetThuc > :date ORDER BY km.soLuongVe DESC",
+                    KhuyenMai.class).setParameter("soLuong", soLuong).setParameter("loai", "KMKH").setParameter("trangThai", true).setParameter("date", Date.from(Instant.now())).setMaxResults(1).getSingleResult();
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+    }
 
+    public KhuyenMai layKhuyenMaiTotNhatBangLoai(String loai) {
+        try {
+            return em.createQuery(
+                    "SELECT km FROM KhuyenMai km WHERE km.loaiKhuyenMai = :loai AND km.trangThai = :trangThai AND km.thoiGianKetThuc > :date ORDER BY km.chietKhau DESC",
+                    KhuyenMai.class).setParameter("loai", loai).setParameter("trangThai", true).setParameter("date", Date.from(Instant.now())).setMaxResults(1).getSingleResult();
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+    }
     public List<KhuyenMai> getKhuyenMaiSapKetThuc() {
         try {
             LocalDateTime now = LocalDateTime.now();
