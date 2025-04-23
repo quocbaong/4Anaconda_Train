@@ -22,7 +22,7 @@ public class Tau_Data {
             for (int i = 0; i < 10; i++) {
                 Tau tau = new Tau();
                 tau.setMaTau("T" + (i + 1)); // Mã tàu giả định
-                tau.setLoaiTau(faker.vehicle().type()); // Lấy loại tàu từ faker
+                tau.setLoaiTau(faker.vehicle().makeAndModel()); // Lấy loại tàu từ faker
                 tau.setTenTau(faker.space().star()); // Tên tàu là tên ngôi sao
                 tau.setTocDo(50 + random.nextDouble() * 100); // Tốc độ ngẫu nhiên từ 50 đến 150
 
