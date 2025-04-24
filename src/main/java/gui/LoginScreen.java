@@ -66,7 +66,7 @@ public class LoginScreen extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N1
         jLabel12.setForeground(new java.awt.Color(204, 204, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
  
